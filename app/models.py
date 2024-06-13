@@ -1,5 +1,6 @@
-from app import db, login_manager
-from flask_login import UserMixin # Этот класс даёт возможность работать с пользователем
+from app import db
+from flask_login import UserMixin
+from app import login_manager
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -11,5 +12,5 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
 
-    def __repr__(self): # Функция, чтобы представить информацию о пользователе в виде одной строки
-        return f'User: {self.username}, email: {self.emai}'
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}')"
